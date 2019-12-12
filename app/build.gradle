@@ -3,9 +3,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion 28
+//    buildToolsVersion '28.0.0'
     defaultConfig {
         applicationId "com.msy.rrodemo"
         minSdkVersion 19
@@ -45,4 +48,7 @@ dependencies {
     //dagger2
     implementation 'com.google.dagger:dagger:2.14.1'
     annotationProcessor "com.google.dagger:dagger-compiler:2.14.1"
+    //butterknife
+    implementation 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 }
