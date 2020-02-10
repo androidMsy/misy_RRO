@@ -4,6 +4,7 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.msy.rrodemo.api.RROApi;
 import com.msy.rrodemo.contacts.UrlContacts;
 import com.msy.rrodemo.net.fastjson.FastJsonConvertFactory;
+import com.msy.rrodemo.utils.SPUtils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,6 +14,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+
+import static com.msy.rrodemo.contacts.AboutSPContacts.AUTH_TOKEN;
+import static com.msy.rrodemo.contacts.AboutSPContacts.USER_SP_KEY;
 
 /**
  * Created by Administrator on 2019/9/26/026.
@@ -38,12 +42,13 @@ public class RetrofitManager {
                         Request request = chain.request();
                         HttpUrl.Builder addQueryParameter = request.url().newBuilder()
                                 .scheme(request.url().scheme())
-                                .host(request.url().host());
-//                                .addQueryParameter("token", SPUtils.getInstance().getString(AppConstant.TOKEN))
+                                .host(request.url().host())
+                                .addQueryParameter("token", SPUtils.getInstance(USER_SP_KEY).getString(AUTH_TOKEN));
 //                                .addQueryParameter("nowVersions", "" + AppUtils.getVersionCode(App.getApplication()))
 //                                .addQueryParameter("iphone_type", "IOS");
                         Request build = request.newBuilder().method(request.method(), request
                                 .body())
+                                .header("token", SPUtils.getInstance(USER_SP_KEY).getString(AUTH_TOKEN))
                                 .url(addQueryParameter.build())
                                 .build();
 

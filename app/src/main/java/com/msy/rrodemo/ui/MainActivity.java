@@ -1,27 +1,33 @@
 package com.msy.rrodemo.ui;
 
-import android.content.Intent;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.RadioButton;
 
 import com.msy.rrodemo.basic.BaseActivity;
 import com.msy.rrodemo.R;
-import com.msy.rrodemo.entity.MainBean;
-import com.msy.rrodemo.entity.UserBean;
-import com.msy.rrodemo.presenter.MainPresenter;
-import com.msy.rrodemo.view.MainView;
+import com.msy.rrodemo.ui.home.HomeFragment;
+import com.msy.rrodemo.ui.mine.MineFragment;
+import com.msy.rrodemo.ui.contacts.ContactsFragment;
+import com.msy.rrodemo.ui.product.ProductFragment;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 
 
 /**
  * Created by Administrator on 2019/9/26/026.
  */
 
-public class MainActivity extends BaseActivity<MainPresenter> implements View.OnClickListener,MainView.View {
+public class MainActivity extends BaseActivity implements View.OnClickListener{
 
-    private Button requestBtn;
-    private TextView contentTv;
+    @BindView(R.id.home_btn)
+    RadioButton homeBtn;
 
+    private HomeFragment homeFragment;
+    private ProductFragment productFragment;
+    private MineFragment mineFragment;
+    private ContactsFragment contactsFragment;
 
     @Override
     protected int getLayoutId() {
@@ -30,14 +36,14 @@ public class MainActivity extends BaseActivity<MainPresenter> implements View.On
 
     @Override
     protected void initWidget(){
-        requestBtn = findViewById(R.id.request_btn);
-        contentTv = findViewById(R.id.content_tv);
-        findViewById(R.id.menu_img).setOnClickListener(this);
-    }
-
-    @Override
-    public void initInject() {
-        getActivityComponent().inject(this);
+        homeBtn.setChecked(true);
+        homeFragment = new HomeFragment();
+        productFragment = new ProductFragment();
+        contactsFragment = new ContactsFragment();
+        mineFragment = new MineFragment();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.add(R.id.container, homeFragment);
+        ft.commit();
     }
 
     @Override
@@ -46,33 +52,73 @@ public class MainActivity extends BaseActivity<MainPresenter> implements View.On
 
     @Override
     public void initListner(){
-        requestBtn.setOnClickListener(this);
+
     }
 
     @Override
     protected void loadData() {
-        mPresenter.getData();
+
     }
 
+    @OnClick({R.id.home_btn,R.id.product_btn,R.id.contacts_btn,R.id.mine_btn})
     @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.menu_img:
-                startActivity(new Intent(this, StatusActivity.class));
+    public void onClick(View v) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        switch (v.getId()){
+            case R.id.home_btn:
+                switchFragment(0, ft);
                 break;
-            default:
+            case R.id.product_btn:
+                switchFragment(1, ft);
+                break;
+            case R.id.contacts_btn:
+                switchFragment(2, ft);
+                break;
+            case R.id.mine_btn:
+                switchFragment(3, ft);
+                break;
+        }
+        ft.commit();
+    }
 
+    private void switchFragment(int index, FragmentTransaction ft){
+        switch (index){
+            case 0:
+                ft.show(homeFragment);
+                if (productFragment.isAdded())ft.hide(productFragment);
+                if (contactsFragment.isAdded())ft.hide(contactsFragment);
+                if (mineFragment.isAdded())ft.hide(mineFragment);
+                break;
+            case 1:
+                ft.hide(homeFragment);
+                if (productFragment.isAdded()){
+                    ft.show(productFragment);
+                }else {
+                    ft.add(R.id.container, productFragment);
+                }
+                if (contactsFragment.isAdded())ft.hide(contactsFragment);
+                if (mineFragment.isAdded())ft.hide(mineFragment);
+                break;
+            case 2:
+                ft.hide(homeFragment);
+                if (productFragment.isAdded())ft.hide(productFragment);
+                if (contactsFragment.isAdded()){
+                    ft.show(contactsFragment);
+                }else {
+                    ft.add(R.id.container, contactsFragment);
+                }
+                if (mineFragment.isAdded())ft.hide(mineFragment);
+                break;
+            case 3:
+                ft.hide(homeFragment);
+                if (productFragment.isAdded())ft.hide(productFragment);
+                if (contactsFragment.isAdded())ft.hide(contactsFragment);
+                if (mineFragment.isAdded()){
+                    ft.show(mineFragment);
+                }else {
+                    ft.add(R.id.container, mineFragment);
+                }
                 break;
         }
     }
-
-    @Override
-    public void setData(MainBean bean) {
-        String str = "";
-        for (UserBean user : bean.getList()){
-            str += user.getIntro() + "----";
-        }
-        contentTv.setText(str);
-    }
-
 }

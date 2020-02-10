@@ -4,7 +4,9 @@ import android.app.Activity;
 
 import com.msy.rrodemo.di.module.ActivityModule;
 import com.msy.rrodemo.di.scope.ActivityScope;
-import com.msy.rrodemo.ui.MainActivity;
+import com.msy.rrodemo.ui.ChatActivity;
+import com.msy.rrodemo.ui.LoginActivity;
+import com.msy.rrodemo.ui.RegisterActivity;
 import com.msy.rrodemo.ui.StatusActivity;
 
 import dagger.Component;
@@ -19,7 +21,11 @@ public interface ActivityComponent {
 
     Activity getActivity();
 
-    void inject(MainActivity mainActivity);
-
     void inject(StatusActivity statusActivity);
+
+    void inject(ChatActivity chatActivity);
+
+    void inject(LoginActivity loginActivity);
+
+    void inject(RegisterActivity registerActivity);
 }

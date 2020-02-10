@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/username_edt"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_height"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/default_edt_bg"
+        android:textSize="@dimen/content_text_size"
+        android:hint="用户名">
+    </EditText>
+    <EditText
+        android:id="@+id/password_edt"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_height"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginTop="@dimen/default_margin"
+        android:background="@drawable/default_edt_bg"
+        android:textSize="@dimen/content_text_size"
+        android:hint="密码"/>
+</merge>

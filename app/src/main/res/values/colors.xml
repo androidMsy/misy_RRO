@@ -5,4 +5,13 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="color_gray">#9a9a9a</color>
+    <color name="base_color">#CC0033</color>
+
+    <color name="white">#ffffff</color>
+    <color name="first_black">#202020</color>
+    <color name="second_black">#2d2d2d</color>
+    <color name="third_black">#3e3e3e</color>
+
+    <color name="default_line">#5e5e5e</color>
+    <color name="default_backgroud">#eeeeee</color>
 </resources>

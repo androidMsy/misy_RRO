@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Administrator on 2019/9/26/026.
  */
 
-public interface MainView {
+public interface HomeView {
     interface View extends BaseView{
         void setData(MainBean str);
 

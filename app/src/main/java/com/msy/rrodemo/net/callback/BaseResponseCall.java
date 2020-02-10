@@ -21,7 +21,7 @@ public abstract class BaseResponseCall<T> implements Consumer<T> {
     @Override
     public void accept(T t) throws Exception {
         if (null == mView)return;
-        onAccept(t);
         mView.complete();
+        onAccept(t);
     }
 }

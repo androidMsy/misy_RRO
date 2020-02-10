@@ -1,7 +1,12 @@
 package com.msy.rrodemo.net.scheduler;
 
 
+import android.util.Log;
+
+import com.alibaba.fastjson.JSON;
+import com.msy.rrodemo.entity.BaseCollection;
 import com.msy.rrodemo.entity.BaseRsp;
+import com.msy.rrodemo.entity.UserBean;
 import com.msy.rrodemo.net.exception.ApiException;
 import com.msy.rrodemo.net.exception.ErrorStatus;
 import com.msy.rrodemo.net.exception.ExceptionHandle;
@@ -13,6 +18,8 @@ import io.reactivex.ObservableTransformer;
 import io.reactivex.functions.Function;
 
 public class ResponseTransformer {
+
+
     public static <T> ObservableTransformer<BaseRsp<T>, T> handleResult() {
         return upstream -> upstream
                 .onErrorResumeNext(new ErrorResumeFunction<>())

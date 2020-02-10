@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="MISY登录"
+        android:gravity="center"
+        android:textColor="@color/base_color"
+        android:textSize="@dimen/title_text_size"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/default_margin"
+        android:layout_marginRight="@dimen/default_margin"
+        android:layout_weight="0.5"
+        android:orientation="vertical">
+        <include layout="@layout/layout_unameandpswd_edt"/>
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_height"
+            android:layout_marginTop="48dp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="@dimen/default_height"
+            android:layout_marginRight="@dimen/default_height"
+            android:background="@drawable/default_btn"
+            android:text="登录"/>
+        <Button
+            android:id="@+id/register_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_height"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="@dimen/default_height"
+            android:layout_marginRight="@dimen/default_height"
+            android:background="@drawable/default_btn"
+            android:text="注册"/>
+
+    </LinearLayout>
+</LinearLayout>

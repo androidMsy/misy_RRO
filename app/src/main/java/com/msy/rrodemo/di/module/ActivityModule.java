@@ -3,7 +3,6 @@ package com.msy.rrodemo.di.module;
 import android.app.Activity;
 
 import com.msy.rrodemo.di.scope.ActivityScope;
-import com.msy.rrodemo.presenter.MainPresenter;
 
 import dagger.Module;
 import dagger.Provides;

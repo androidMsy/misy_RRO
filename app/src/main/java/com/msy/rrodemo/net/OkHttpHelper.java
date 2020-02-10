@@ -4,6 +4,7 @@ import android.content.Context;
 
 
 import com.msy.rrodemo.app.MyApp;
+import com.msy.rrodemo.utils.SPUtils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,6 +13,9 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
+
+import static com.msy.rrodemo.contacts.AboutSPContacts.AUTH_TOKEN;
+import static com.msy.rrodemo.contacts.AboutSPContacts.USER_SP_KEY;
 
 /**
  * 描述:okHttp 帮助类
@@ -45,11 +49,9 @@ public class OkHttpHelper {
             HttpUrl.Builder addQueryParameter = request.url().newBuilder()
                     .scheme(request.url().scheme())
                     .host(request.url().host());
-//                    .addQueryParameter("token", SPUtils.getInstance().getString(AppConstant.TOKEN))
-//                    .addQueryParameter("nowVersions", "" + AppUtils.getVersionCode(App.getApplication()))
-//                    .addQueryParameter("iphone_type", "IOS");
             Request build = request.newBuilder().method(request.method(), request
                     .body())
+                    .addHeader("Cookie", "JSESSIONID=" + SPUtils.getInstance(USER_SP_KEY).getString(AUTH_TOKEN))
                     .url(addQueryParameter.build())
                     .build();
             return chain.proceed(build);

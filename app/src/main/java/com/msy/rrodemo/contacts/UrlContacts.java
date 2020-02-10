@@ -5,5 +5,8 @@ package com.msy.rrodemo.contacts;
  */
 
 public class UrlContacts {
+
+    public static final int PAGE_SIZE = 10;
+
     public static final String BASE_URL = "http://10.0.0.31:8080";
 }

@@ -1,5 +1,8 @@
 package com.msy.rrodemo.basic;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
@@ -11,6 +14,7 @@ public class RxPresenter<T extends BaseView> implements BasePresenter<T> {
 
     protected T mView;
     private CompositeDisposable mCompositeDisposable;
+    protected Handler myHandler = new Handler(Looper.getMainLooper());
 
     private void unSubscribe() {
         if (mCompositeDisposable != null) {

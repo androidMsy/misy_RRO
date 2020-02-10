@@ -1,5 +1,7 @@
 package com.msy.rrodemo.entity;
 
+import retrofit2.http.Field;
+
 /**
  * Created by Administrator on 2019/12/11/011.
  */
@@ -10,6 +12,7 @@ public class UserBean {
     private String realname;
     private String headerUrl;
     private String intro;
+    private String token;
 
     public String getUserId() {
         return userId;
@@ -49,5 +52,13 @@ public class UserBean {
 
     public void setIntro(String intro) {
         this.intro = intro;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
